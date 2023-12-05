@@ -127,6 +127,7 @@ export type WeatherDataBase = {
     temp_min: number;
     temp_max: number;
   };
+  note_added?: string[];
 };
 
 export type IWeatherData = WeatherDataBase & WeatherType;

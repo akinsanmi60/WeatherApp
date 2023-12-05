@@ -1,4 +1,4 @@
-import {  iconUrlFromCode } from '@utils/constant';
+import { iconUrlFromCode } from '@utils/constant';
 import { IWeatherData } from 'types/weather';
 import { GiSunrise, GiSunset } from 'react-icons/gi';
 import { FaArrowDown, FaArrowUp, FaWind } from 'react-icons/fa6';
@@ -9,7 +9,6 @@ function WeatherDetailComponent({
 }: {
   dataToDisplay: IWeatherData | null;
 }) {
-  
   return (
     <div className=" text-white max-content">
       <div className="container">

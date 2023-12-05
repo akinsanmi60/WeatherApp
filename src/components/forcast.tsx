@@ -8,10 +8,6 @@ function Forcast({
   dataToDisplay: IWeatherData | null;
   title: string;
 }) {
-
-
-
-
   return (
     <div>
       {' '}

@@ -1,3 +1,4 @@
+import CustomButton from '@shared/button';
 import { InputSearchBox } from '@shared/input';
 import { fetchData } from '@utils/api';
 import { useGetLocationContext } from 'context/geoLocationProvider';
@@ -38,22 +39,14 @@ function Header() {
             </div>
 
             <div className="w-[50%] flex justify-end gap-x-[15px]">
-              <div className="">
-                <button
-                  onClick={() => handleModalOpen('favouriteList')}
-                  className="w-full h-[40px] px-[8px] text-[13px] font-[600] rounded-[12px] bg-slate-200 flex items-center gap-2 justify-center hover:bg-cyan-500"
-                >
-                  Favourite List
-                </button>
-              </div>
-              <div className="">
-                <button
-                  onClick={() => handleModalOpen('detailPage')}
-                  className="w-full h-[40px] px-[8px] text-[13px] font-[600] rounded-[12px] bg-slate-200 flex items-center gap-2 justify-center hover:bg-cyan-500"
-                >
-                  View Details
-                </button>
-              </div>
+              <CustomButton
+                title="Favourite List"
+                handleClick={() => handleModalOpen('favouriteList')}
+              />
+              <CustomButton
+                title="View Details"
+                handleClick={() => handleModalOpen('detailPage')}
+              />
             </div>
           </div>
         </div>

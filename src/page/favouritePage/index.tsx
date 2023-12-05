@@ -2,10 +2,20 @@ import { iconUrlFromCode } from '@utils/constant';
 import { useFavouriteContext } from 'context/addFavoriteProvider';
 import { useModalContext } from 'context/modelProvider';
 import { IoCloseCircleSharp, IoCloseOutline } from 'react-icons/io5';
+import { IWeatherData } from 'types/weather';
 
 function FavouriteListPage() {
-  const { handleModalClose } = useModalContext();
-  const { handleRemove, favouriteList } = useFavouriteContext();
+  const { handleModalClose, handleModalOpen } = useModalContext();
+  const { handleRemove, favouriteList, setFav } = useFavouriteContext();
+
+  const openDrawer = (item: IWeatherData) => {
+    handleModalClose('favouriteList');
+    handleModalOpen('detailPage');
+    setFav({
+      text: 'Details',
+      data: item,
+    });
+  };
 
   return (
     <div>
@@ -29,7 +39,10 @@ function FavouriteListPage() {
               key={item.name}
               className="cursor-pointer shadow-md flex justify-around items-center w-full"
             >
-              <div className="flex items-center">
+              <div
+                className="flex items-center"
+                onClick={() => openDrawer(item)}
+              >
                 <div>
                   <img
                     src={iconUrlFromCode(

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
-import { IFavouriteContext } from 'types/favourite';
+import { IFav, IFavouriteContext } from 'types/favourite';
 import { IWeatherData } from 'types/weather';
 
 export const FavouriteContext = createContext({} as IFavouriteContext);
@@ -10,17 +10,20 @@ export default function AddFavoriteProvider({
   children: React.ReactNode;
 }) {
   const dataInLocal = localStorage.getItem('favoriteWeather');
-  const data = JSON.parse(dataInLocal!);
+  const data = JSON.parse(dataInLocal!) as IWeatherData[];
 
   const initialFavouriteList: IWeatherData[] = Array.isArray(data) ? data : [];
 
   const [favouriteList, setFavouriteList] =
     useState<IWeatherData[]>(initialFavouriteList);
+  const [fav, setFav] = useState<IFav>({
+    text: '',
+    data: null,
+  });
 
   const inListItem = (itemToCheck: string) => {
     return favouriteList?.some(obj => obj?.name === itemToCheck);
   };
-
   const removeOption = (itemSelected: string) => {
     return favouriteList?.filter(item => item?.name !== itemSelected);
   };
@@ -50,6 +53,8 @@ export default function AddFavoriteProvider({
       removeOption,
       handleAdd,
       handleRemove,
+      setFav,
+      fav,
     }),
     [inListItem, removeOption, handleAdd, handleRemove],
   );
