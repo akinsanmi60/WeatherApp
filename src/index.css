@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #f7f7f7;
+    line-height: 1;
+    transition-duration: 0.5s, 0.1s;
+    transition-property: background, color;
+    transition-timing-function: ease-out;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+@layer components {
+  .container {
+    @apply lg:px-6 xl:px-12 w-full  px-14 mx-auto max-w-8xl h-full xlsm:px-3;
+  }
+  .max-content {
+    @apply max-w-[1350px] mx-auto h-full w-full;
+  }
+}
