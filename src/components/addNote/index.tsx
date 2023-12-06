@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import CustomButton from '@shared/button';
 import { useFavouriteContext } from 'context/addFavoriteProvider';
 import React, { useState } from 'react';
@@ -7,10 +8,11 @@ import { IWeatherData } from 'types/weather';
 function CustomTextarea({ name }: { name: string }) {
   const { favouriteList, inListItem, setFavouriteList } = useFavouriteContext();
   const [note, setNote] = useState('');
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const memorisedFav = React.useMemo(() => {
     return favouriteList.find(item => item.name === name);
-  }, [favouriteList, name, localStorage]);
+  }, [favouriteList, name]) as IWeatherData;
 
   const handleSave = () => {
     if (inListItem(name)) {
@@ -41,7 +43,9 @@ function CustomTextarea({ name }: { name: string }) {
           'favoriteWeather',
           JSON.stringify(clonedFavouriteList),
         );
-        setNote('');
+        if (textareaRef.current) {
+          textareaRef.current.value = '';
+        }
       }
       return;
     } else {
@@ -74,6 +78,7 @@ function CustomTextarea({ name }: { name: string }) {
   return (
     <div className="p-[10px] mt-[20px]">
       <textarea
+        ref={textareaRef}
         minLength={10}
         maxLength={600}
         cols={30}
